@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Logs da API com Diff</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/28157a8fdb.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      padding: 5px;
+      font-family: Sans-Serif;
+      background-color: #fff;
+    }
+    
+    .log-card {
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgb(0,0,0,0.3);
+      padding: 1rem;
+      border-radius: 10px;
+      margin: 5px
+    }
+    
+    .log-card header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+    
+    .log-card header .status {
+      margin-left: auto;
+      font-weight: bold;
+      
+      & i {
+        color: #ff9b28;
+      }
+    }
+    
+    .log-card header span {
+      background-color: rgb(21,166,255);
+      border-radius: 8px;
+      padding: 8px;
+      margin-right: 5px;
+      color: #fff;
+      font-weight: bold;
+      
+      &.GET {
+        background-color: #66ff12;
+      }
+      &.POST {
+        background-color: #1279ff;
+      }
+      &.DELETE {
+        background-color: #ff3715;
+      }
+    }
+    
+    .log-card .card-diff {
+      margin: 5px;
+      white-space: pre;
+      background-color: #1e1e1e;
+      color: rgb(255, 255, 255, 0.5);
+      border-radius: 10px;
+      padding: 1rem;
+      
+      & div {
+        display: inline-block
+      }
+      & .added {
+        color: #15ff39;
+        background-color: rgb(49,255,82,0.3);
+      }
+      & .removed {
+        color: #ff3131;
+        background-color: rgb(255,49,49,0.3);
+      }
+      & .modified {
+        color: #ffa431;
+        background-color: rgb(255,164,49,0.3);
+      }
+    }
+    
+    .log-card h3 {
+      margin: 0;
+    }
+    
+    .chart {
+  box-shadow: 0 2px 5px rgb(0,0,0,0.3);
+  border-radius: 10px;
+  margin: 5px;
+  color: #fff;
+  padding: 1rem;
+}
+.chart .chartProgress {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.chart .chartProgress .bar {
+  height: 30px;
+  width: 100%;
+  margin-right: 5px;
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  color: ;
+  align-items: center;
+  justify-content: center;
+  background: #28b9ff
+}
+.chart .chartProgress .number {
+  margin-left: auto;
+  color: #000;
+}
+    
+    .json-code .string { color: #6fff73; }
+    .json-code .number { color: #ff6fb6; }
+    .json-code .boolean { color: #ffa26f; font-weight: bold; }
+    .json-code .null { color: #6f91ff; font-style: italic; }
+     .json-code .key { color: #dd6fff; }
+   .alert {
+     box-shadow: 0 2px 3px rgb(0,0,0,0.3);
+     padding: 1rem;
+     border-radius: 10px;
+     
+     & h2 {
+       margin: 0;
+       color: rgb(0, 0, 0, 0.8);
+     }
+     & i {
+        color: #ff9b28;
+      }
+   }
+  </style>
+</head>
+<body>
+  <div class="chart">
+  <div class='chartProgress'>
+    <div class="bar" style='width: 100px'>280</div> <div class='number'>May 25</div>
+    </div>  
+  <div class='chartProgress'>
+    <div class="bar" style='width: 100px'>280</div> <div class='number'>April 25</div>
+    </div>
+  </div>
+<div class="log-card">
+  <header>
+  <span class="POST">POST</span> api/v3/actions <div class="status">200</div>
+  </header>
+    <h3>Body</h3>
+  <div class="card-diff">
+    {
+       "nome": "Enzo",
+       "gay": true
+    }
+  </div>
+    <h3>Headers</h3>
+  <div class="card-diff">
+    {
+     "application-type": "json"
+    }
+  </div>
+    <h3>Requester</h3>
+  <div class="card-diff">
+    {
+     "by": "example.com",
+     "ip": "0.0.0.0.0"
+    }
+  </div>
+</div>
+<div class="log-card">
+  <header>
+  <span class="GET">GET</span> api/v3/actions <div class="status">200</div>
+  </header>
+    <h3>Body</h3>
+  <div class="card-diff">
+    {
+       "nome": "Guilherme",
+       "idade": 5000,
+       "cpf": "567.886.879-20",
+       "gay": true,
+       "virgem": false
+    }
+  </div>
+    <h3>Headers</h3>
+  <div class="card-diff">
+    {
+     "application-type": "json",
+     "Authorization": "key"
+    }
+  </div>
+    <h3>Requester</h3>
+  <div class="card-diff">
+    {
+     "by": "Negão Pirocudo",
+     "ip": "0.0.0.0.0"
+    }
+  </div>
+</div>
+<div class="log-card">
+  <header>
+  <span class="GET">GET</span> api/v3/actions <div class="status">200</div>
+  </header>
+    <h3>Body</h3>
+  <div class="card-diff">
+   // avatar
+  </div>
+    <h3>Headers</h3>
+  <div class="card-diff">
+    {
+     "application-type": "text"
+    }
+  </div>
+    <h3>Requester</h3>
+  <div class="card-diff">
+    {
+     "by": "json",
+     "ip": "0.0.0.0.0"
+    }
+  </div>
+</div>
+<div class="log-card">
+  <header>
+  <span class="GET">GET</span> api/v3/actions <div class="status">200 <i class="fa fa-exclamation-circle"></i></div>
+  </header>
+    <h3>Body</h3>
+  <div class="card-diff">
+   // avatar
+  </div>
+    <h3>Headers</h3>
+  <div class="card-diff">
+    {
+     "application-type": "text"
+    }
+  </div>
+    <h3>Requester</h3>
+  <div class="card-diff">
+    {
+     "by": "json",
+     "ip": "0.0.0.0.0"
+    }
+  </div>
+</div>
+<div class="log-card">
+  <header>
+  <span class="POST">POST</span> api/v3/actions <div class="status">200 <i class="fa fa-exclamation-circle"></i></div>
+  </header>
+    <h3>Body</h3>
+  <div class="card-diff">
+    {
+       "nome": "Guilherme",
+       "idade": 5000,
+       "cpf": "567.886.879-20",
+       "gay": true,
+       "virgem": false,
+       "viadão": true,
+       "chupa": true
+    }
+  </div>
+    <h3>Headers</h3>
+  <div class="card-diff">
+    {
+     "application-type": "json",
+     "Authorization": "key"
+    }
+  </div>
+    <h3>Requester</h3>
+  <div class="card-diff">
+    {
+     "by": "Negão Pirocudo",
+     "ip": "0.0.0.0.0"
+    }
+  </div>
+</div>
+  <script>
+    function formatarJSON(jsonString) {
+  try {
+    const jsonObject = JSON.parse(jsonString);
+    const jsonFormatado = JSON.stringify(jsonObject, null, 2); // Indentação com 2 espaços
+    return `<pre style="tab-size:2; font-size: 1em;"><code class="json-code">${realcarSintaxeJSON(jsonFormatado)}</code></pre>`;
+  } catch (error) {
+    return `<pre style="tab-size:2; font-size: 1em;"><code>${jsonString}</code></pre>`;
+  }
+}
+    function realcarSintaxeJSON(jsonFormatado) {
+    return jsonFormatado.replace(/("(\\u[a-fA-F0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+-]?\d+)?)/g, function (match) {
+    let cls = 'number';
+    if (/^"/.test(match)) {
+      if (/:$/.test(match)) {
+        cls = 'key';
+      } else {
+        cls = 'string';
+      }
+    } else if (/true|false/.test(match)) {
+      cls = 'boolean';
+    } else if (/null/.test(match)) {
+      cls = 'null';
+    }
+    return `<span class="${cls}">${match}</span>`;
+  });
+}
+    [].slice.call(document.getElementsByClassName("card-diff")).map(x=>{
+      const content = formatarJSON(x.innerHTML)
+      x.innerHTML = content
+    })
+    [
+  {
+    "tipo": "URLs longas e complexas",
+    "caracteristica": "Excesso de comprimento e parâmetros incomuns, potencialmente tentando explorar vulnerabilidades ou injetar código."
+  },
+  {
+    "tipo": "Parâmetros inesperados",
+    "caracteristica": "Presença de parâmetros na requisição que não são normalmente utilizados pela funcionalidade, sugerindo manipulação."
+  },
+  {
+    "tipo": "Sequências de comandos ou caracteres especiais",
+    "caracteristica": "Inclusão de comandos SQL, de sistema operacional, tags HTML ou JavaScript em parâmetros, indicando tentativas de injeção."
+  },
+  {
+    "tipo": "Volume excessivo de requisições",
+    "caracteristica": "Grande número de requisições em curto período, possivelmente um ataque DoS ou força bruta."
+  },
+  {
+    "tipo": "Requisições frequentes a recursos inexistentes",
+    "caracteristica": "Tentativas repetidas de acessar páginas ou arquivos que não existem, sinal de um scanner de vulnerabilidades."
+  },
+  {
+    "tipo": "Padrões de acesso incomuns",
+    "caracteristica": "Requisições a páginas em ordem ilógica ou a recursos inesperados para um usuário normal."
+  },
+  {
+    "tipo": "User-Agent incomum ou ausente",
+    "caracteristica": "Cabeçalho User-Agent desconhecido ou inexistente, sugerindo um script malicioso ou ferramenta automatizada."
+  },
+  {
+    "tipo": "Cookies estranhos ou manipulados",
+    "caracteristica": "Cookies com nomes ou valores atípicos, indicando possível roubo de sessão ou manipulação."
+  },
+  {
+    "tipo": "Referências (Referer) suspeitas",
+    "caracteristica": "Cabeçalho Referer apontando para sites maliciosos ou inconsistente com a navegação."
+  },
+  {
+    "tipo": "Tentativas de acessar arquivos sensíveis",
+    "caracteristica": "Requisições diretas a arquivos de configuração, bancos de dados ou outros recursos protegidos."
+  },
+  {
+    "tipo": "Exploração de rotas não intencionais",
+    "caracteristica": "Tentativas de acessar funcionalidades do sistema por caminhos não documentados ou protegidos."
+  }
+]
+
+  </script>
+</body>
+</html>
